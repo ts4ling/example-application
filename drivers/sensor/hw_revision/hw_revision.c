@@ -102,7 +102,7 @@ static const struct sensor_driver_api hw_revision_api = {
 #define HW_REVISION_INIT(i)					\
 								\
 static const struct gpio_dt_spec gpio_dt_spec_##i[] = {		\
-	DT_INST_FOREACH_CHILD_SEP_VARGS(i, GPIO_DT_SPEC_GET, (,), input-gpios) \
+	DT_INST_FOREACH_CHILD_SEP_VARGS(i, GPIO_DT_SPEC_GET, (,), gpios) \
 };								\
 								\
 static struct hw_revision_data hw_revision_data_##i;	       \

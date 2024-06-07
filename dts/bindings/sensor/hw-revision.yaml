@@ -9,16 +9,21 @@ description: |
 
     hw-revision {
         compatible = "hw-revision";
-        input-gpios = <&gpio0 0 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>,
-                      <&gpio0 1 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>;
+        hw_rev_pin_0 {
+                input-gpios = <&gpio0 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+        };
+        hw_rev_pin_1 {
+                input-gpios = <&gpio0 1 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>;
+        };
     };
 
 compatible: "hw-revision"
 
 include: base.yaml
 
-properties:
-  input-gpios:
-    type: phandle-array
-    required: true
-    description: Input GPIO to be sensed.
+child-binding:
+  properties:
+    gpios:
+      type: phandle-array
+      required: true
+      description: Input GPIO to be sensed.

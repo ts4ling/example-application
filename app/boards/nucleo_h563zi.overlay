@@ -20,11 +20,15 @@
 		led-gpios = <&gpiob 13 GPIO_ACTIVE_HIGH>;
 		blink-period-ms = <1000>;
 	};
-	
+
 	hw_revision: hw-revision {
 		compatible = "hw-revision";
-		input-gpios = <&gpiog 14 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>,
-		<&gpiof 11 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+		hw_rev0 {
+			gpios = <&gpiog 14 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+		};
+		hw_rev1 {
+			gpios = <&gpiof 11 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+		};
 	};
 };
 
