@@ -20,10 +20,16 @@ int main(void)
 {
 	int ret;
 	unsigned int period_ms = BLINK_PERIOD_MS_MAX;
-	const struct device *sensor, *blink;
+	const struct device *sensor, *blink, *hw_rev;
 	struct sensor_value last_val = { 0 }, val;
 
 	printk("Zephyr Example Application %s\n", APP_VERSION_STRING);
+
+	hw_rev = DEVICE_DT_GET(DT_NODELABEL(hw_revision));
+	if (!device_is_ready(hw_rev)) {
+		LOG_ERR("hardware revision not ready");
+		return 0;
+	}
 
 	sensor = DEVICE_DT_GET(DT_NODELABEL(example_sensor));
 	if (!device_is_ready(sensor)) {
@@ -36,6 +42,7 @@ int main(void)
 		LOG_ERR("Blink LED not ready");
 		return 0;
 	}
+
 
 	ret = blink_off(blink);
 	if (ret < 0) {

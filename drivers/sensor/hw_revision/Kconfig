@@ -1,0 +1,21 @@
+# Copyright (c) 2024 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig HW_REVISION
+	bool "Hardware revision detection drivers"
+	help
+	  This option enables the hardware revision detection custom driver.
+
+if HW_REVISION
+
+config HW_REVISION_INIT_PRIORITY
+	int "Hardware revision device drivers init priority"
+	default KERNEL_INIT_PRIORITY_DEVICE
+	help
+	  Hardware revision device drivers init priority.
+
+module = HW_REVISION
+module-str = hw-revision
+source "subsys/logging/Kconfig.template.log_config"
+
+endif # HW_REVISION

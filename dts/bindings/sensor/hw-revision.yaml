@@ -1,0 +1,24 @@
+# Copyright (c) 2024 Thorsten Spätling <thorsten.spaetling@vierling.de>
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  An example sensor that reads the GPIO level defined in input-gpios. The
+  purpose of this sensor is to demonstrate how to create out-of-tree drivers.
+
+  Example definition in devicetree:
+
+    hw-revision {
+        compatible = "hw-revision";
+        input-gpios = <&gpio0 0 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>,
+                      <&gpio0 1 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>;
+    };
+
+compatible: "hw-revision"
+
+include: base.yaml
+
+properties:
+  input-gpios:
+    type: phandle-array
+    required: true
+    description: Input GPIO to be sensed.
